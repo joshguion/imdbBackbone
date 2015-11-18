@@ -19,8 +19,7 @@ var itemModel = require('./itemModel');
 module.exports = Backbone.View.extend({
   el: '.wrapper',
   events: {
-    'click .submitfilms': 'submitFilm',
-
+    'click .submitFilms': 'submitMovie'
   },
   // render: function () {
   //   var stuff = this.template(this.model.toJSON());
@@ -28,12 +27,12 @@ module.exports = Backbone.View.extend({
   //   return this;
   // },
   submitMovie : function(event){
-    var newfilm = {
-        title: this.$el.find('input[class="title"]').val(),
-        release: this.$el.find('input[class="release"]').val(),
-        cover: this.$el.find('input[class="cover"]').val(),
-        plot: this.$el.find('input[class="plot"]').val(),
-        rating: this.$el.find('input[class="rating"]').val(),
+    var newFilm = {
+        title: this.$el.find('input[class="movie-title"]').val(),
+        release: this.$el.find('input[class="release-year"]').val(),
+        cover: this.$el.find('input[class="cover-url"]').val(),
+        plot: this.$el.find('input[class="movie-plot"]').val(),
+        rating: this.$el.find('input[class="movie-rating"]').val(),
       };
       console.log(newFilm);
       var newFilmToSubmit = new itemModel(newFilm);
@@ -73,7 +72,7 @@ module.exports = Backbone.Model.extend({
     plot: "Plot",
   },
   initialize: function () {
-    console.log(hellerrrrrr);
+
   }
 });
 

@@ -11,6 +11,6 @@ module.exports = Backbone.Model.extend({
     plot: "Plot",
   },
   initialize: function () {
-    console.log(hellerrrrrr);
+
   }
 });
