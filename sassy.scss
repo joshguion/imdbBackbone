@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #FAFAFA;
+}
+
+header {
+  background: white;
+  padding: 1.5% 0 0 12%;
+  border-bottom: 2px solid #EDEEEE;
+  .title {
+    width: 13%;
+    position: relative;
+    top: 40px;
+    h1 {
+      padding: 5px;
+      font-family: 'Lobster two', cursive;
+      font-size: 2.5em;
+      color: #00477B;
+      width: 100%;
+      border: 1px solid #EDEEEE;
+      border-radius: 5px;
+      background: #FAFAFA;
+    }
+  }
+
+.h2 {
+  width: 55%;
+  h2 {
+    position: relative;
+    left: 18%;
+    top: -50px;
+    margin-left: 20%;
+    font-family: 'Lobster', cursive;
+    color: #2D3F9A;
+    font-size: 2.5em;
+    text-shadow: 2px 2px #EDEEEE;
+  }
+}
+
+  .cameraIcon {
+    width: 50px;
+    position: relative;
+    left: 75%;
+    top: -117px;
+    background: #FAFAFA;
+    border: solid 1px #EDEEEE;
+    border-radius: 5px;
+    padding: .5%;
+  }
+}
+
+.coverImg {
+  width:20%;
+  margin: 5% 0 5% 5%;
+  box-shadow: 3px 3px lightgray;
+}
+
+form {
+  margin-left: 9%;
+  margin-top: 2%;
+}
+
+input {
+ padding: .25%;
+ width: 15%;
+ &:focus {
+   outline: none;
+ }
+}
+
+ul {
+  list-style-type: none;
+  float: right;
+  margin-top: 5%;
+  margin-right: 30%;
+  width: 45%;
+  li {
+    background: white;
+    margin-bottom: 5%;
+    width: 100%;
+    border: 1px solid #EDEEEE;
+    padding: 1%;
+  }
+}
+button {
+  background: #EDEEEE;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.movies {
+  margin-left: 5%;
+}
