@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
 
   render: function () {
     var markup = this.template(this.model.toJSON());
-    this.$el.html(markup);
+    this.$el.append(markup);
     return this;
   },
   deleteMovie : function() {

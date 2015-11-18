@@ -3,5 +3,9 @@ var ItemModel = require('./itemModel')
 
 module.exports = Backbone.Collection.extend({
   url: 'http://tiny-tiny.herokuapp.com/collections/guionimnotdb',
-  model: ItemModel
+  model: ItemModel,
+  initialize: function() {
+    console.log(this.url);
+  }
+
 });

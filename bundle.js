@@ -4,7 +4,11 @@ var ItemModel = require('./itemModel')
 
 module.exports = Backbone.Collection.extend({
   url: 'http://tiny-tiny.herokuapp.com/collections/guionimnotdb',
-  model: ItemModel
+  model: ItemModel,
+  initialize: function() {
+    console.log(this.url);
+  }
+
 });
 
 },{"./itemModel":3,"backbone":6}],2:[function(require,module,exports){
@@ -17,7 +21,7 @@ var itemModel = require('./itemModel');
 
 
 module.exports = Backbone.View.extend({
-  el: '.scroll',
+  el: '.container',
   events: {
     'click .submitFilms': 'submitMovie',
   },
@@ -27,6 +31,7 @@ module.exports = Backbone.View.extend({
   //   return this;
   // },
   submitMovie : function(event){
+    event.preventDefault();
     var newFilm = {
         title: this.$el.find('input[class="movie-title"]').val(),
         release: this.$el.find('input[class="release-year"]').val(),
@@ -39,9 +44,7 @@ module.exports = Backbone.View.extend({
           newFilmToSubmit.save();
           this.collection.add(newFilmToSubmit);
           this.addFilm(newFilmToSubmit);
-//           setTimeout(function(){
-//       //this.render();
-// }, 500);
+
    },
   initialize: function (){
     this.addAllFilms();
@@ -49,7 +52,7 @@ module.exports = Backbone.View.extend({
   addFilm: function (itemModel) {
     console.log(itemModel);
     var ItemView = new itemView({model: itemModel});
-    this.$el.append(ItemView.render().el);
+    // this.$el.append(ItemView.render().el);
   },
   addAllFilms: function(){
     _.each(this.collection.models, this.addFilm, this);
@@ -62,7 +65,7 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http:tiny-tiny.herokuapp.com/collections/guionimnotdb',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/guionimnotdb',
   idAttribute: '_id',
   defaults: {
     cover: "http://img1.wikia.nocookie.net/__cb20140522210002/spellbook/images/5/56/Insert-Photo-Here.jpg",
@@ -93,7 +96,7 @@ module.exports = Backbone.View.extend({
 
   render: function () {
     var markup = this.template(this.model.toJSON());
-    this.$el.html(markup);
+    this.$el.append(markup);
     return this;
   },
   deleteMovie : function() {

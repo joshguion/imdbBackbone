@@ -7,7 +7,7 @@ var itemModel = require('./itemModel');
 
 
 module.exports = Backbone.View.extend({
-  el: '.scroll',
+  el: '.container',
   events: {
     'click .submitFilms': 'submitMovie',
   },
@@ -17,6 +17,7 @@ module.exports = Backbone.View.extend({
   //   return this;
   // },
   submitMovie : function(event){
+    event.preventDefault();
     var newFilm = {
         title: this.$el.find('input[class="movie-title"]').val(),
         release: this.$el.find('input[class="release-year"]').val(),
@@ -29,9 +30,7 @@ module.exports = Backbone.View.extend({
           newFilmToSubmit.save();
           this.collection.add(newFilmToSubmit);
           this.addFilm(newFilmToSubmit);
-//           setTimeout(function(){
-//       //this.render();
-// }, 500);
+
    },
   initialize: function (){
     this.addAllFilms();
@@ -39,7 +38,7 @@ module.exports = Backbone.View.extend({
   addFilm: function (itemModel) {
     console.log(itemModel);
     var ItemView = new itemView({model: itemModel});
-    this.$el.append(ItemView.render().el);
+    // this.$el.append(ItemView.render().el);
   },
   addAllFilms: function(){
     _.each(this.collection.models, this.addFilm, this);
