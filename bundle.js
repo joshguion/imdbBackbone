@@ -17,9 +17,9 @@ var itemModel = require('./itemModel');
 
 
 module.exports = Backbone.View.extend({
-  el: '.wrapper',
+  el: '.scroll',
   events: {
-    'click .submitFilms': 'submitMovie'
+    'click .submitFilms': 'submitMovie',
   },
   // render: function () {
   //   var stuff = this.template(this.model.toJSON());
@@ -62,7 +62,7 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/guionimnotdb',
+  urlRoot: 'http:tiny-tiny.herokuapp.com/collections/guionimnotdb',
   idAttribute: '_id',
   defaults: {
     cover: "http://img1.wikia.nocookie.net/__cb20140522210002/spellbook/images/5/56/Insert-Photo-Here.jpg",

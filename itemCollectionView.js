@@ -7,9 +7,9 @@ var itemModel = require('./itemModel');
 
 
 module.exports = Backbone.View.extend({
-  el: '.wrapper',
+  el: '.scroll',
   events: {
-    'click .submitFilms': 'submitMovie'
+    'click .submitFilms': 'submitMovie',
   },
   // render: function () {
   //   var stuff = this.template(this.model.toJSON());
