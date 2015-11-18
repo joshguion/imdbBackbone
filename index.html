@@ -27,25 +27,25 @@
         <input type="text" class="movie-plot" placeholder="Plot">
         <button type="submit" name="button" class="submitFilms">Submit</button>
       </form>
-      <div class="wrapper"></div>
-      
+      <div class="container scroll">
+
       <script type="html/template" id="filmTmpl">
        <article class="filmArticle">
          <div class="movies">
            <img class="coverImg" src="<%= cover %>" alt="" />
            <ul>
-             <li class="title">Title: <%=title%> </li>
-             <li>Release Year: <%=release%> </li>
-             <li>Rating: <%=rating%> </li>
-             <li>Plot: <%=plot%> </li>
+             <li class="title">Title: <%= title %> </li>
+             <li>Release Year: <%= release %> </li>
+             <li>Rating: <%= rating %> </li>
+             <li>Plot: <%= plot %> </li>
              <button type="button" name="edit">Edit</button>
-             <button data-id='<%=_id%>' class="delete">Delete</button>
+             <button data-id='<%= _id %>' class="delete">Delete</button>
            </ul>
          </div>
        </article>
      </script>
 
-      <!-- <article class="">
+      <article class="">
         <div class="movies">
           <img class="coverImg" src="images/eternal_sunshine_of_the_spotless_mind_ver1.jpg" alt="">
           <ul>
@@ -57,10 +57,39 @@
             <button type="button" name="delete">Delete</button>
           </ul>
         </div>
-      </article> -->
-
+      </article>
+      <article class="">
+        <div class="movies">
+          <img class="coverImg" src="images/Stranger-Than-Fiction-Poster-copy.jpg" alt="">
+          <ul>
+            <li>Title: </li>
+            <li>Release Year: </li>
+            <li>Rating: </li>
+            <li>Plot: </li>
+            <button type="button" name="edit">Edit</button>
+            <button type="button" name="delete">Delete</button>
+          </ul>
+        </div>
+      </article>
+      <article class="">
+        <div class="movies">
+          <img class="coverImg" src="images/fight-club.25541.jpg" alt="">
+          <ul>
+            <li>Title: </li>
+            <li>Release Year: </li>
+            <li>Rating: </li>
+            <li>Plot: </li>
+            <button type="button" name="edit">Edit</button>
+            <button type="button" name="delete">Delete</button>
+          </ul>
+        </div>
+      </article>
     </div>
+  </div>
 
+  <footer>
+    <h1>IMnotDB</h1>
+  </footer>
 
 
 

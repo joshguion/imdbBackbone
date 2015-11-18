@@ -9,12 +9,9 @@ module.exports = Backbone.View.extend({
   className: 'filmArticle',
   template: _.template($('#filmTmpl').html()),
   events: {
-    'click span': 'onArticleClick',
     'click .delete': 'deleteMovie'
   },
-  onArticleClick: function () {
 
-  },
   render: function () {
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
