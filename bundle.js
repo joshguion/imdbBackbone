@@ -1,5 +1,82 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var tmpl = require('./templates');
+
+module.exports = Backbone.View.extend({
+  initialize: function () {},
+  template: _.template(tmpl.footer),
+  render: function () {
+    var markup = this.template({});
+    this.$el.html(markup);
+    return this;
+  }
+});
+
+},{"./templates":13,"backbone":10,"jquery":11,"underscore":12}],2:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var tmpl = require('./templates');
+var FilmModel = require('./itemModel');
+
+module.exports = Backbone.View.extend({
+  className: 'addFilm',
+  model: null, // just here as placeholder, but need a model up on instantiation
+  events: {
+    'submit form': 'onAddFilm'
+  },
+  initialize: function () {
+    if(!this.model) {
+      this.model = new FilmModel();
+    }
+  },
+  onAddFilm: function (evt) {
+    evt.preventDefault();
+    var newFilm = {
+      cover: this.$el.find('input[class="cover-url"]').val(),
+      title: this.$el.find('input[class="movie-title"]').val(),
+      release: this.$el.find('input[class="release-year"]').val(),
+      rating: this.$el.find('input[class="movie-rating"]').val(),
+      plot: this.$el.find('input[class="movie-plot"]').val()
+    };
+    this.model.set(newFilm);
+    this.model.save();
+    this.$el.find('input, textarea').val('');
+
+  },
+  template: _.template(tmpl.form),
+  render: function () {
+    var markup = this.template(this.model.toJSON());
+    this.$el.html(markup);
+    // in order to call .el off of render we need to return this
+    // bookViewInstance.render().el - yields all markup and data from model
+    return this;
+  }
+});
+
+},{"./itemModel":6,"./templates":13,"backbone":10,"jquery":11,"underscore":12}],3:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var tmpl = require('./templates');
+
+module.exports = Backbone.View.extend({
+  initialize: function () {},
+  template: _.template(tmpl.header),
+  render: function () {
+    var markup = this.template({});
+    this.$el.html(markup);
+    return this;
+  }
+});
+
+},{"./templates":13,"backbone":10,"jquery":11,"underscore":12}],4:[function(require,module,exports){
+var Backbone = require('backbone');
 var ItemModel = require('./itemModel')
 
 module.exports = Backbone.Collection.extend({
@@ -11,7 +88,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./itemModel":3,"backbone":6}],2:[function(require,module,exports){
+},{"./itemModel":6,"backbone":10}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -52,16 +129,17 @@ module.exports = Backbone.View.extend({
   addFilm: function (itemModel) {
     console.log(itemModel);
     var ItemView = new itemView({model: itemModel});
-    // this.$el.append(ItemView.render().el);
+    this.$el.append(ItemView.render().el);
   },
   addAllFilms: function(){
     _.each(this.collection.models, this.addFilm, this);
+
 
   }
 
 });
 
-},{"./itemModel":3,"./itemModelView":4,"backbone":6,"jquery":7,"underscore":8}],3:[function(require,module,exports){
+},{"./itemModel":6,"./itemModelView":7,"backbone":10,"jquery":11,"underscore":12}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -70,7 +148,7 @@ module.exports = Backbone.Model.extend({
   defaults: {
     cover: "http://img1.wikia.nocookie.net/__cb20140522210002/spellbook/images/5/56/Insert-Photo-Here.jpg",
     title: "Title",
-    releaseYear: "Year",
+    release: "Year",
     rating: "Rating",
     plot: "Plot",
   },
@@ -79,24 +157,27 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":6}],4:[function(require,module,exports){
+},{"backbone":10}],7:[function(require,module,exports){
 
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
+var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
-  tagName: 'article',
-  className: 'filmArticle',
-  template: _.template($('#filmTmpl').html()),
   events: {
-    'click .delete': 'deleteMovie'
+    'click .delete': 'deleteMovie',
   },
-
+  tagName: 'article',
+  model: null, // just here as placeholder, but need a model up on instantiation
+  initialize: function () {},
+  template: _.template(tmpl.film),
   render: function () {
     var markup = this.template(this.model.toJSON());
-    this.$el.append(markup);
+    this.$el.html(markup);
+    // in order to call .el off of render we need to return this
+    // bookViewInstance.render().el - yields all markup and data from model
     return this;
   },
   deleteMovie : function() {
@@ -105,26 +186,51 @@ module.exports = Backbone.View.extend({
    console.log(_id);
    this.model.destroy(_id);
  },
-  initialize: function () {}
 
 });
 
-},{"backbone":6,"jquery":7,"underscore":8}],5:[function(require,module,exports){
+},{"./templates":13,"backbone":10,"jquery":11,"underscore":12}],8:[function(require,module,exports){
+var Backbone = require('backbone');
 var $ = require('jquery');
-var ItemCollection = require('./itemCollection');
-var ItemCollectionView = require('./itemCollectionView');
+Backbone.$ = $;
+var _ = require('underscore');
+var HeaderView = require('./headerView');
+var FooterView = require('./footerView');
+var FormView = require('./formView');
+var FilmsView = require('./itemCollectionView');
+var FilmCollection = require('./itemCollection');
+
+
+module.exports = Backbone.View.extend({
+  el: '#layoutView',
+  initialize: function () {
+    var that = this;
+    var headerHTML = new HeaderView();
+    var footerHTML = new FooterView();
+    var formHTML = new FormView();
+    var filmCollection = new FilmCollection();
+    filmCollection.fetch().then(function () {
+      var filmsView = new FilmsView({collection: filmCollection});
+      that.$el.find('header').html(headerHTML.render().el);
+      that.$el.find('footer').html(footerHTML.render().el);
+      that.$el.find('aside').html(formHTML.render().el);
+    });
+
+
+  }
+
+});
+
+},{"./footerView":1,"./formView":2,"./headerView":3,"./itemCollection":4,"./itemCollectionView":5,"backbone":10,"jquery":11,"underscore":12}],9:[function(require,module,exports){
+
+var $ = require('jquery');
+var layoutView = require('./layoutView');
 
 $(function () {
-  var films = new ItemCollection();
-
-  films.fetch().then(function (data) {
-    console.log("these are the films: ", films);
-    new ItemCollectionView({collection: films});
-
-  });
+  new layoutView();
 })
 
-},{"./itemCollection":1,"./itemCollectionView":2,"jquery":7}],6:[function(require,module,exports){
+},{"./layoutView":8,"jquery":11}],10:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2022,7 +2128,7 @@ $(function () {
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":7,"underscore":8}],7:[function(require,module,exports){
+},{"jquery":11,"underscore":12}],11:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11234,7 +11340,7 @@ return jQuery;
 
 }));
 
-},{}],8:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12784,4 +12890,57 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[5]);
+},{}],13:[function(require,module,exports){
+module.exports = {
+
+
+  film: [
+     "<article class='filmArticle>",
+     "<div class='movies'>",
+     "<img class='coverImg' src='<%= cover %>' alt='' />",
+     "<ul>",
+     "<li class='title'><%= title %> </li>",
+     "<li><%= release %> </li>",
+     "<li><%= rating %> / 10 <span class='star'>&#9733;</span></li>",
+     "<li><%= plot %></li>",
+     "<button type='button' name='edit'>Edit</button>",
+     "<button data-id='<%= _id %>' class='delete'>Delete</button>",
+     "</ul>",
+     "</div>",
+     "</article>"
+  ].join(""),
+
+
+  form: [
+    "<div class='container form-div scroll'>",
+    "<form action='' class='input-form'>",
+    "<input type='text' class='cover-url' placeholder='Cover Url'>",
+    "<input type='title' class='movie-title' placeholder='Title'>",
+    "<input type='text' class='release-year' placeholder='Release Year'>",
+    "<input type='text' class='movie-rating' placeholder='Rating'>",
+    "<input type='text' class='movie-plot' placeholder='Plot'>",
+    "<button type='submit' name='button' class='submitFilms'>Submit</button>",
+    "</form>",
+    "</div>"
+  ].join(""),
+
+
+  header: [
+    "<div class='title'>",
+    "<h1>IMnotDB</h1>",
+    "</div>",
+    "<div class='h2'>",
+    "<h2>Your Fav Movies</h2>",
+    "</div>",
+    "<img class='cameraIcon' src='images/cameraIcon.png' alt=''>"
+  ].join(""),
+
+
+  footer: [
+    "<h1>IMnotDB</h1>"
+  ].join(""),
+
+
+};
+
+},{}]},{},[9]);

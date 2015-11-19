@@ -7,48 +7,29 @@
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Lobster|Lobster+Two' rel='stylesheet' type='text/css'>
 
-    <script type="html/template" id="filmTmpl">
-     <article class="filmArticle">
-       <div class="movies">
-         <img class="coverImg" src="<%= cover %>" alt="" />
-         <ul>
-           <li class="title">Title: <%= title %> </li>
-           <li>Release Year: <%= release %> </li>
-           <li>Rating: <%= rating %> </li>
-           <li>Plot: <%= plot %> </li>
-           <button type="button" name="edit">Edit</button>
-           <button data-id='<%= _id %>' class="delete">Delete</button>
-         </ul>
-       </div>
-     </article>
-   </script>
-
   </head>
   <body>
-    <div class="wrapper">
+    <div id="layoutView">
+
       <header>
-        <div class="title">
-          <h1>IMnotDB</h1>
-        </div>
-        <div class="h2">
-          <h2>Your Fav Movies</h2>
-        </div>
-        <img class="cameraIcon" src="images/cameraIcon.png" alt="">
+
       </header>
-      <div class="container form-div scroll">
-        <form action="" class="input-form">
-          <input type="text" class="cover-url" placeholder="Cover Url">
-          <input type="title" class="movie-title" placeholder="Title">
-          <input type="text" class="release-year" placeholder="Release Year">
-          <input type="text" class="movie-rating" placeholder="Rating">
-          <input type="text" class="movie-plot" placeholder="Plot">
-          <button type="button" name="button" class="submitFilms">Submit</button>
-        </form>
-      </div>
+
+      <aside class = "addFilm">
+
+
+      </aside>
+      <section class="content">
+        <div class="container  scroll">
+
+        </div>
+      </section>
+
+      <footer>
+
+      </footer>
+
     </div>
-  <footer>
-    <h1>IMnotDB</h1>
-  </footer>
 
 
 

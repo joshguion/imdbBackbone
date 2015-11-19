@@ -38,10 +38,11 @@ module.exports = Backbone.View.extend({
   addFilm: function (itemModel) {
     console.log(itemModel);
     var ItemView = new itemView({model: itemModel});
-    // this.$el.append(ItemView.render().el);
+    this.$el.append(ItemView.render().el);
   },
   addAllFilms: function(){
     _.each(this.collection.models, this.addFilm, this);
+
 
   }
 

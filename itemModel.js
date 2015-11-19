@@ -6,7 +6,7 @@ module.exports = Backbone.Model.extend({
   defaults: {
     cover: "http://img1.wikia.nocookie.net/__cb20140522210002/spellbook/images/5/56/Insert-Photo-Here.jpg",
     title: "Title",
-    releaseYear: "Year",
+    release: "Year",
     rating: "Rating",
     plot: "Plot",
   },

@@ -47,6 +47,15 @@ header {
   overflow-y: auto;
   height: 400px; }
 
+aside {
+  height: 70px; }
+
+article {
+  margin-left: 9%; }
+
+.star {
+  color: gold; }
+
 .coverImg {
   width: 20%;
   margin: 5% 0 5% 5%;
@@ -73,7 +82,8 @@ ul {
     margin-bottom: 5%;
     width: 100%;
     border: 1px solid #EDEEEE;
-    padding: 1%; }
+    padding: 1%;
+    box-shadow: 2px 2px lightgray; }
 
 button {
   background: #EDEEEE;
@@ -87,7 +97,8 @@ button {
 
 footer {
   background: white;
-  border-top: 1px solid #EDEEEE; }
+  border-top: 1px solid #EDEEEE;
+  padding-bottom: 2%; }
   footer h1 {
     text-align: center;
     font-family: 'Lobster two', cursive;

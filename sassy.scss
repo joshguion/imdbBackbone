@@ -56,6 +56,15 @@ header {
   height: 400px;
 }
 
+aside {
+  height: 70px;
+}
+article {
+  margin-left: 9%;
+}
+.star {
+  color: gold;
+}
 .coverImg {
   width:20%;
   margin: 5% 0 5% 5%;
@@ -87,6 +96,7 @@ ul {
     width: 100%;
     border: 1px solid #EDEEEE;
     padding: 1%;
+    box-shadow: 2px 2px lightgray;
   }
 }
 button {
@@ -105,6 +115,7 @@ button {
 footer {
   background: white;
   border-top: 1px solid #EDEEEE;
+  padding-bottom: 2%;
   h1 {
     text-align: center;
     font-family:'Lobster two', cursive;
